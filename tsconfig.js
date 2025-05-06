@@ -1,0 +1,12 @@
+module.exports = {
+	compilerOptions: {
+		target: "ES2020", 
+		module: "ESNext", 
+		strict: true,
+		esModuleInterop: true,
+		skipLibCheck: true,
+		forceConsistentCasingInFileNames: true
+	},
+	include: ["src/**/*"],
+	exclude: ["node_modules", "dist"]
+};

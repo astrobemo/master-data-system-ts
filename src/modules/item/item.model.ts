@@ -14,7 +14,7 @@ export interface Item {
 
 export interface SubItem {
   id: number
-  itemId: string;
+  itemId: number;
   sku_code: string;
   name: string;
   unit: string;

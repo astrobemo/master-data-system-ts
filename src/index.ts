@@ -2,7 +2,8 @@ import app from './app.js'; // Import the application logic
 import dotenv from 'dotenv'; // Load environment variables
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-import express from 'express';
+import { getPool } from './database/poolManager.js'; 
+
 
 dotenv.config(); // Initialize dotenv
 const PORT = process.env.PORT || 3000; // Corrected 'proses' to 'process'
@@ -18,11 +19,13 @@ const server = new ApolloServer({
       hello: () => 'Hello world!',
     },
   },
+  
 });
 
 await server.start();
 
-app.use('/graphql', express.json(), expressMiddleware(server));
+
+app.use('/graphql', expressMiddleware(server));
 
 // Start the server
 app.listen(PORT, () => {

@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*.ts", "src/database/prisma-client.ts"],
+  "include": ["src/**/*.ts", "src/database/prismaClient.ts"],
   "exclude": ["tests/**/*.ts"],
   "compilerOptions": {
     "target": "es2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,

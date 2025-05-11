@@ -3,13 +3,14 @@ import { Decimal } from '../../graphql/decimal.js';
 import handleResolverError from 'graphql/handleResolverError.js';
 import { ResolverFn } from 'graphql/types.js';
 import { ItemService } from './item.service.js';
+import { Item } from './item.model.js';
 // Export resolvers for Decimal
 
-const getItem: ResolverFn<null, { id: number }, {}, any> = async (_, { id }, {}) => {
+const getItem: ResolverFn<null, { id: number }, {}, Item> = async (_, { id }, {}) => {
   return ItemService.getItemById(id);
 };
 
-const getItems: ResolverFn<null, {}, {}, any> = async (_, __, {}) => {
+const getItems: ResolverFn<null, {}, {}, Item> = async (_, __, {}) => {
   return ItemService.getAllItems();
 };
 

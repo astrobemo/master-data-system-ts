@@ -6,18 +6,17 @@ export class ItemService {
       where: { id },
     });
   }
-  
 
   static async getAllItems() {
     return client.item.findMany();
   }
 
-  static async createItem(input: { 
-    sku_code: string; 
-    name: string; 
-    unit: string; 
-    description?: string; 
-    price: number 
+  static async createItem(input: {
+    sku_code: string;
+    name: string;
+    unit: string;
+    description?: string;
+    price: number;
   }) {
     return client.item.create({
       input,
@@ -25,14 +24,15 @@ export class ItemService {
   }
 
   static async updateItem(
-    id: number, 
-    input: Partial<{ 
-      sku_code: string; 
-      name: string; 
-      unit: string; 
-      description?: string; 
-      price: number 
-    }>) {
+    id: number,
+    input: Partial<{
+      sku_code: string;
+      name: string;
+      unit: string;
+      description?: string;
+      price: number;
+    }>,
+  ) {
     return client.item.update({
       where: { id },
       input,
@@ -48,36 +48,36 @@ export class ItemService {
 
 //===============subitem================
 export class SubItemService {
-
   static async getSubItemByItemId(itemId: number) {
     return client.subItem.findMany({
       where: { itemId },
     });
   }
 
-  static async createSubItem(input: { 
-    itemId: number; 
-    sku_code: string; 
-    name: string; 
-    unit: string; 
-    description?: string; 
-    price: number 
+  static async createSubItem(input: {
+    itemId: number;
+    sku_code: string;
+    name: string;
+    unit: string;
+    description?: string;
+    price: number;
   }) {
     return client.subItem.create({
       input,
     });
-  } 
+  }
 
   static async updateSubItem(
-    id: number, 
-    input: Partial<{ 
-      itemId: number; 
-      sku_code: string; 
-      name: string; 
-      unit: string; 
-      description?: string; 
-      price: number 
-    }>) {
+    id: number,
+    input: Partial<{
+      itemId: number;
+      sku_code: string;
+      name: string;
+      unit: string;
+      description?: string;
+      price: number;
+    }>,
+  ) {
     return client.subItem.update({
       where: { id },
       input,
@@ -89,5 +89,4 @@ export class SubItemService {
       where: { id },
     });
   }
-  
 }

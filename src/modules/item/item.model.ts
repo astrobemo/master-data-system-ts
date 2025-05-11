@@ -1,6 +1,6 @@
 // Define TypeScript interfaces for Item and SubItem
 export interface Item {
-  id: number
+  id: number;
   sku_code: string;
   name: string;
   unit: string;
@@ -13,7 +13,7 @@ export interface Item {
 }
 
 export interface SubItem {
-  id: number
+  id: number;
   itemId: number;
   sku_code: string;
   name: string;
@@ -28,10 +28,10 @@ export interface SubItem {
 
 // Define an enum for UnitType
 export enum UnitType {
-  PIECE = "piece",
-  KILOGRAM = "kilogram",
-  LITER = "liter",
-  BOX = "box",
+  PIECE = 'piece',
+  KILOGRAM = 'kilogram',
+  LITER = 'liter',
+  BOX = 'box',
 }
 
 // Define a default unit type

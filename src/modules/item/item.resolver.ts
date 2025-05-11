@@ -6,7 +6,11 @@ import { ItemService, SubItemService } from './item.service.js';
 import { Item, SubItem } from './item.model.js';
 // Export resolvers for Decimal
 
-const getItem: ResolverFn<null, { id: number }, {}, Item> = async (_, { id }, {}) => {
+const getItem: ResolverFn<null, { id: number }, {}, Item> = async (
+  _,
+  { id },
+  {},
+) => {
   return ItemService.getItemById(id);
 };
 
@@ -14,35 +18,86 @@ const getItems: ResolverFn<null, {}, {}, Item> = async (_, __, {}) => {
   return ItemService.getAllItems();
 };
 
-const createItem: ResolverFn<null, { input: Item }, {}, Item> = async(_, { input }, {}) => {
+const createItem: ResolverFn<null, { input: Item }, {}, Item> = async (
+  _,
+  { input },
+  {},
+) => {
   const { sku_code, name, unit, description, price } = input;
   return ItemService.createItem({ sku_code, name, unit, description, price });
 };
 
-const updateItem: ResolverFn<null, { id: number; input: Partial<Item> }, {}, Item> = async(_, { id, input }, {}) => {
+const updateItem: ResolverFn<
+  null,
+  { id: number; input: Partial<Item> },
+  {},
+  Item
+> = async (_, { id, input }, {}) => {
   const { sku_code, name, unit, description, price } = input;
-  return ItemService.updateItem(id, { sku_code, name, unit, description, price });
+  return ItemService.updateItem(id, {
+    sku_code,
+    name,
+    unit,
+    description,
+    price,
+  });
 };
-const deleteItem: ResolverFn<null, { id: number }, {}, Item> = async(_, { id }, {}) => {
+const deleteItem: ResolverFn<null, { id: number }, {}, Item> = async (
+  _,
+  { id },
+  {},
+) => {
   return ItemService.deleteItem(id);
 };
 
 //=================subitem================
 
-const getSubItemByItemId: ResolverFn<null, { itemId: number }, {}, SubItem> = async (_, { itemId }, {}) => {
+const getSubItemByItemId: ResolverFn<
+  null,
+  { itemId: number },
+  {},
+  SubItem
+> = async (_, { itemId }, {}) => {
   return SubItemService.getSubItemByItemId(itemId);
 };
 
-const createSubItem: ResolverFn<null, { input: SubItem }, {}, SubItem> = async(_, { input }, {}) => {
+const createSubItem: ResolverFn<null, { input: SubItem }, {}, SubItem> = async (
+  _,
+  { input },
+  {},
+) => {
   const { itemId, sku_code, name, unit, description, price } = input;
-  return SubItemService.createSubItem({ itemId, sku_code, name, unit, description, price });
+  return SubItemService.createSubItem({
+    itemId,
+    sku_code,
+    name,
+    unit,
+    description,
+    price,
+  });
 };
-const updateSubItem: ResolverFn<null, { id: number; input: Partial<SubItem> }, {}, SubItem> = async(_, { id, input }, {}) => {
+const updateSubItem: ResolverFn<
+  null,
+  { id: number; input: Partial<SubItem> },
+  {},
+  SubItem
+> = async (_, { id, input }, {}) => {
   const { itemId, sku_code, name, unit, description, price } = input;
-  return SubItemService.updateSubItem(id, { itemId, sku_code, name, unit, description, price });
+  return SubItemService.updateSubItem(id, {
+    itemId,
+    sku_code,
+    name,
+    unit,
+    description,
+    price,
+  });
 };
 
-const deleteSubItem: ResolverFn<null, { id: number }, {}, SubItem> = async(_, { id }, {}) => {
+const deleteSubItem: ResolverFn<null, { id: number }, {}, SubItem> = async (
+  _,
+  { id },
+  {},
+) => {
   return SubItemService.deleteSubItem(id);
 };
 

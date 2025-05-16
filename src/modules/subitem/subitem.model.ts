@@ -8,6 +8,6 @@ export interface SubItem {
   price: number;
   isActive: boolean;
   isDeleted: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -38,9 +38,17 @@ export class SubItemService {
     });
   }
 
-  static async deleteSubItem(id: number) {
-    return client.subitem.delete({
+  static async deleteSubItem(
+    id: number,
+    isDeleted: boolean = true,
+    isActive: boolean = false,
+  ) {
+    return client.subitem.update({
       where: { id },
+      data: {
+        isDeleted,
+        isActive,
+      },
     });
   }
 }

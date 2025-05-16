@@ -40,9 +40,17 @@ export class ItemService {
     });
   }
 
-  static async deleteItem(id: number) {
-    return client.item.delete({
+  static async deleteItem(
+    id: number,
+    isDeleted: boolean = true,
+    isActive: boolean = false
+  ) {
+    return client.item.update({
       where: { id },
+      data: {
+        isDeleted,
+        isActive,
+      },
     });
   }
 }

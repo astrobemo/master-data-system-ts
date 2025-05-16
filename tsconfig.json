@@ -16,7 +16,9 @@
     "paths": {
       "@modules/*": ["modules/*"],
       "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@graphql/*": ["graphql/*"],
+      "@database/*": ["database/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
     "strict": true /* Enable all strict type-checking options. */,

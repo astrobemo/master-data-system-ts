@@ -1,4 +1,5 @@
 import { client } from '../../database/prismaClient.js';
+import { Unit } from '@prisma/client';
 
 export class ItemService {
   static async getItemById(id: number) {
@@ -14,12 +15,12 @@ export class ItemService {
   static async createItem(input: {
     sku_code: string;
     name: string;
-    unit: string;
-    description?: string;
+    unit: Unit;
+    description: string | null;
     price: number;
   }) {
     return client.item.create({
-      input,
+      data: input,
     });
   }
 
@@ -28,14 +29,14 @@ export class ItemService {
     input: Partial<{
       sku_code: string;
       name: string;
-      unit: string;
-      description?: string;
+      unit: Unit;
+      description: string | null;
       price: number;
     }>,
   ) {
     return client.item.update({
       where: { id },
-      input,
+      data: input,
     });
   }
 
@@ -46,47 +47,3 @@ export class ItemService {
   }
 }
 
-//===============subitem================
-export class SubItemService {
-  static async getSubItemByItemId(itemId: number) {
-    return client.subItem.findMany({
-      where: { itemId },
-    });
-  }
-
-  static async createSubItem(input: {
-    itemId: number;
-    sku_code: string;
-    name: string;
-    unit: string;
-    description?: string;
-    price: number;
-  }) {
-    return client.subItem.create({
-      input,
-    });
-  }
-
-  static async updateSubItem(
-    id: number,
-    input: Partial<{
-      itemId: number;
-      sku_code: string;
-      name: string;
-      unit: string;
-      description?: string;
-      price: number;
-    }>,
-  ) {
-    return client.subItem.update({
-      where: { id },
-      input,
-    });
-  }
-
-  static async deleteSubItem(id: number) {
-    return client.subItem.delete({
-      where: { id },
-    });
-  }
-}

@@ -1,7 +1,7 @@
 import { GraphQLScalarType, Kind } from 'graphql';
 
 // Define custom scalar for Decimal
-export const Decimal = new GraphQLScalarType({
+const Decimal = new GraphQLScalarType({
   name: 'Decimal',
   description: 'Custom scalar type for Decimal values',
   serialize(value: unknown) {
@@ -23,3 +23,5 @@ export const Decimal = new GraphQLScalarType({
     throw new Error('Decimal must be a float or string literal');
   },
 });
+
+export default Decimal;

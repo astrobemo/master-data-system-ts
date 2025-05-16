@@ -9,18 +9,36 @@ const logLevel =
   ENVIRONMENT === 'development'
     ? ['error', 'info', 'warn', 'error']
     : ['error', 'warn', 'error'];
-function connect(): PrismaClient {
-  if (!process.env.DB_URL) {
-    throw new Error('DB_URL is not defined in .env file');
-  }
 
-  return new PrismaClient({
-    datasource: {
-      url: process.env.DB_URL,
+declare global {
+  var prisma: PrismaClient | undefined;
+}
+
+const databaseUrl = process.env.DATABASE_URL || process.env.DB_URL;
+console.log('Database URL:', databaseUrl);
+if (!databaseUrl) {
+  throw new Error('DATABASE_URL or DB_URL is not defined in .env file');
+}
+
+let prisma: PrismaClient;
+
+if (global.prisma) {
+  prisma = global.prisma;
+} else {
+  prisma = new PrismaClient({
+    datasources: {
+      db: {
+        url: databaseUrl,
+      },
     },
     errorFormat: 'pretty',
-    log: logLevel,
   });
+}
+
+const client = prisma;
+
+if (process.env.NODE_ENV !== 'production') {
+  global.prisma = client;
 }
 
 const gracefulShutdown = async (): Promise<void> => {
@@ -31,7 +49,5 @@ const gracefulShutdown = async (): Promise<void> => {
 process.on('SIGINT', gracefulShutdown);
 process.on('SIGTERM', gracefulShutdown);
 process.on('beforeExit', gracefulShutdown);
-
-const client: PrismaClient = connect();
 
 export { client };

@@ -26,19 +26,13 @@ const createItem: ResolverFn<null, { input: Omit<Item, 'id' | 'createdAt' | 'upd
   {},
 ) => {
   const { sku_code, name, unit, description = null, price } = input;
-  try {
-    return ItemService.createItem({ 
-      sku_code, 
-      name, 
-      unit: unit as Unit, // Cast to Prisma enum
-      description,
-      price 
-    });
-  } catch (error) {
-    console.error('Error creating item:', error);
-    throw new Error('Creation failed');
-    
-  }
+  return ItemService.createItem({ 
+    sku_code, 
+    name, 
+    unit: unit as Unit, // Cast to Prisma enum
+    description,
+    price 
+  });
 };
 
 const updateItem: ResolverFn<
@@ -68,8 +62,8 @@ export const itemResolvers = {
   Decimal,
   Date: DateScalar,
   Query: {
-    item: handleResolverError(getItem),
-    items: handleResolverError(getItems)
+    getItem: handleResolverError(getItem),
+    getItems: handleResolverError(getItems)
   },
   Mutation: {
     createItem: handleResolverError(createItem),

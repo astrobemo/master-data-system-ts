@@ -15,9 +15,9 @@
 
 ## Week 3–4 (19 May – 1 June)
 ✅ Module: Item  
-- Create item table & Prisma schema  
-- Implement GraphQL Query & Mutation  
-- Write unit tests  
+✅ Create item table & Prisma schema  
+✅ Implement GraphQL Query & Mutation  
+✅ Write unit tests  
 - Finalize item CRUD
 
 **Deadline:** 1 June 2025

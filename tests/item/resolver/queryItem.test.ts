@@ -27,14 +27,14 @@ describe('itemResolvers.Query.getItem', () => {
 
   it('should return an item by id', async () => {
     (ItemService.getItemById as any).mockResolvedValue(mockItem);
-    const result = await itemResolvers.Query.item(null, { id: 1 }, {}, fakeInfo);
+    const result = await itemResolvers.Query.getItem(null, { id: 1 }, {}, fakeInfo);
     expect(ItemService.getItemById).toHaveBeenCalledWith(1);
     expect(result).toEqual(mockItem);
   });
 
   it('should return null if item not found', async () => {
     (ItemService.getItemById as any).mockResolvedValue(null);
-    const result = await itemResolvers.Query.item(null, { id: 999 }, {}, fakeInfo);
+    const result = await itemResolvers.Query.getItem(null, { id: 999 }, {}, fakeInfo);
     expect(ItemService.getItemById).toHaveBeenCalledWith(999);
     expect(result).toBeNull();
   });
@@ -47,14 +47,14 @@ describe('itemResolvers.Query.getItems', () => {
 
   it('should return a list of items', async () => {
     (ItemService.getAllItems as any).mockResolvedValue([mockItem]);
-    const result = await itemResolvers.Query.items(null, {}, {}, fakeInfo);
+    const result = await itemResolvers.Query.getItems(null, {}, {}, fakeInfo);
     expect(ItemService.getAllItems).toHaveBeenCalled();
     expect(result).toEqual([mockItem]);
   });
 
   it('should return an empty array if no items found', async () => {
     (ItemService.getAllItems as any).mockResolvedValue([]);
-    const result = await itemResolvers.Query.items(null, {}, {}, fakeInfo);
+    const result = await itemResolvers.Query.getItems(null, {}, {}, fakeInfo);
     expect(ItemService.getAllItems).toHaveBeenCalled();
     expect(result).toEqual([]);
   });

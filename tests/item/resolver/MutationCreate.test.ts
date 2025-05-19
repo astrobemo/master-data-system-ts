@@ -29,6 +29,6 @@ describe('itemResolvers.Mutation.createItem', () => {
 
   it('should throw an error if item creation fails', async () => {
     (ItemService.createItem as any).mockRejectedValue(new Error('Creation failed'));
-    await expect(itemResolvers.Mutation.createItem(null, {input: mockItem}, {}, fakeInfo)).rejects.toThrow('Creation failed');
+    await expect(itemResolvers.Mutation.createItem(null, {input: mockItem}, {}, fakeInfo)).rejects.toThrow('An error occurred while processing your request. Please try again later.');
   });
 });

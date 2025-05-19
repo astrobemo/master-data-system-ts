@@ -1,5 +1,5 @@
-import { client } from "../../database/prismaClient.js";
-import { Unit } from "@prisma/client";
+import { client } from '../../database/prismaClient.js';
+import { Unit } from '@prisma/client';
 
 export class SubItemService {
   static async getSubItemByItemId(itemId: number) {

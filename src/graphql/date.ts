@@ -8,7 +8,7 @@ const DateScalar = new GraphQLScalarType({
     if (value instanceof Date) {
       return value.toISOString(); // Convert outgoing Date to ISO string
     }
-    throw new Error('Date must be a Date object')
+    throw new Error('Date must be a Date object');
   },
   parseValue(value: unknown) {
     if (typeof value === 'string') {

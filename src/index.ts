@@ -6,7 +6,7 @@ import { typeDefs, resolvers } from './modules/index.js'; // Import merged type 
 import { BaseContext } from '@apollo/server';
 
 dotenv.config(); // Initialize dotenv
-const PORT = process.env.PORT || 3000; // Corrected 'proses' to 'process'
+const PORT = process.env.PORT || 3000;
 
 // Initialize Apollo Server
 const server = new ApolloServer<BaseContext>({

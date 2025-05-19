@@ -2,8 +2,8 @@ import { gql } from 'graphql-tag';
 import { unitEnumTypeDefs } from '../../graphql/unit-enum.schema.js';
 
 export const itemTypeDefs = gql`
-scalar Decimal
-scalar Date
+  scalar Decimal
+  scalar Date
 
   type Item {
     id: ID!
@@ -38,9 +38,8 @@ scalar Date
 
     deleteItem(id: ID!): Item!
   }
-    type Query {
-        getItem(id: ID!): Item
-        getItems(offset:Int,limit:Int): [Item!]!
-    }
-  
+  type Query {
+    getItem(id: ID!): Item
+    getItems(offset: Int, limit: Int): [Item!]!
+  }
 `;

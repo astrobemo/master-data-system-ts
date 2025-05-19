@@ -64,14 +64,20 @@ describe('ItemService', () => {
     (client.item.update as any).mockResolvedValue(mockItem);
     const input = { name: 'Updated' };
     const result = await ItemService.updateItem(1, input);
-    expect(client.item.update).toHaveBeenCalledWith({ where: { id: 1 }, data: input });
+    expect(client.item.update).toHaveBeenCalledWith({
+      where: { id: 1 },
+      data: input,
+    });
     expect(result).toBe(mockItem);
   });
 
   it('deleteItem should call update and return deleted item', async () => {
     (client.item.update as any).mockResolvedValue(mockItem);
     const result = await ItemService.deleteItem(1);
-    expect(client.item.update).toHaveBeenCalledWith({ where: { id: 1 }, data: { isDeleted: true, isActive: false } });
+    expect(client.item.update).toHaveBeenCalledWith({
+      where: { id: 1 },
+      data: { isDeleted: true, isActive: false },
+    });
     expect(result).toBe(mockItem);
   });
 });

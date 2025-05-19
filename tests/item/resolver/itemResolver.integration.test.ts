@@ -9,7 +9,7 @@ import { ItemService } from '../../../src/modules/item/item.service';
 // Read the schema from file
 const typeDefs = fs.readFileSync(
   path.join(__dirname, '../../../src/modules/item/item.schema.ts'),
-  'utf-8'
+  'utf-8',
 );
 
 vi.mock('../../../src/modules/item/item.service');
@@ -34,7 +34,9 @@ describe('Item GraphQL Integration', () => {
   beforeEach(async () => {
     (ItemService.getItemById as any).mockResolvedValue(mockItem);
     server = new ApolloServer({ typeDefs, resolvers: itemResolvers });
-    const { url: serverUrl } = await startStandaloneServer(server, { listen: { port: 0 } });
+    const { url: serverUrl } = await startStandaloneServer(server, {
+      listen: { port: 0 },
+    });
     url = serverUrl;
   });
 

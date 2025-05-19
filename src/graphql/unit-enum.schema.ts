@@ -1,12 +1,12 @@
-import {gql} from 'graphql-tag';
+import { gql } from 'graphql-tag';
 
 export const unitEnumTypeDefs = gql`
-enum Unit {
-  PIECE 
-  YARD
-  KILOGRAM
-  LITER
-  METER
-  BOX
-}
-`
+  enum Unit {
+    PIECE
+    YARD
+    KILOGRAM
+    LITER
+    METER
+    BOX
+  }
+`;

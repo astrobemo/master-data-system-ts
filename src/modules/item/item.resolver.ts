@@ -1,6 +1,6 @@
 // import { Pool, Query } from 'pg';
 import Decimal from '../../graphql/decimal.js';
-import DateScalar  from '../../graphql/date.js';
+import DateScalar from '../../graphql/date.js';
 import handleResolverError from '../../graphql/handleResolverError.js';
 import { ResolverFn } from '../../graphql/types.js';
 import { ItemService } from './item.service.js';
@@ -20,24 +20,35 @@ const getItems: ResolverFn<null, {}, {}, Item[]> = async (_, __, {}) => {
   return ItemService.getAllItems();
 };
 
-const createItem: ResolverFn<null, { input: Omit<Item, 'id' | 'createdAt' | 'updatedAt' | 'isActive' | 'isDeleted'> }, {}, Item> = async (
-  _,
-  { input },
+const createItem: ResolverFn<
+  null,
+  {
+    input: Omit<
+      Item,
+      'id' | 'createdAt' | 'updatedAt' | 'isActive' | 'isDeleted'
+    >;
+  },
   {},
-) => {
+  Item
+> = async (_, { input }, {}) => {
   const { sku_code, name, unit, description = null, price } = input;
-  return ItemService.createItem({ 
-    sku_code, 
-    name, 
+  return ItemService.createItem({
+    sku_code,
+    name,
     unit: unit as Unit, // Cast to Prisma enum
     description,
-    price 
+    price,
   });
 };
 
 const updateItem: ResolverFn<
   null,
-  { id: number; input: Partial<Omit<Item, 'id' | 'createdAt' | 'updatedAt' | 'isActive' | 'isDeleted'>> },
+  {
+    id: number;
+    input: Partial<
+      Omit<Item, 'id' | 'createdAt' | 'updatedAt' | 'isActive' | 'isDeleted'>
+    >;
+  },
   {},
   Item
 > = async (_, { id, input }, {}) => {
@@ -63,11 +74,11 @@ export const itemResolvers = {
   Date: DateScalar,
   Query: {
     getItem: handleResolverError(getItem),
-    getItems: handleResolverError(getItems)
+    getItems: handleResolverError(getItems),
   },
   Mutation: {
     createItem: handleResolverError(createItem),
     updateItem: handleResolverError(updateItem),
-    deleteItem: handleResolverError(deleteItem)
-  }
+    deleteItem: handleResolverError(deleteItem),
+  },
 };

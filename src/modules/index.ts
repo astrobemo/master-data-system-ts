@@ -10,7 +10,7 @@ import { unitEnumTypeDefs } from '../graphql/unit-enum.schema.js';
 export const typeDefs = mergeTypeDefs([
   unitEnumTypeDefs,
   itemTypeDefs,
-  subitemTypeDefs
+  subitemTypeDefs,
 ]);
 
 // Merge all resolvers

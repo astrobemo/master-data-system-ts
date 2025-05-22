@@ -25,40 +25,40 @@
 
 ### 3. Error Handling & Validation (Completed: 29 May 2025)
 
-- [x] Input validation using **Zod**
+- [ ] Input validation using **Zod**
 - [x] Use `try/catch` blocks in all mutations
-- [x] Implement custom error messages for `duplicate`, `not found`, etc.
+- [ ] Implement custom error messages for `duplicate`, `not found`, etc.
 
 ### 4. GraphQL Schema & Docs (Completed: 30 May 2025)
 
-- [x] Schema fields and args follow naming and nullability rules
-- [x] Added comments for better readability
-- [x] Return types are clear and consistent
+- [ ] Schema fields and args follow naming and nullability rules
+- [ ] Added comments for better readability
+- [ ] Return types are clear and consistent
 
 ### 5. Manual Testing (Completed: 30 May 2025)
 
-- [x] Tested manually via GraphQL Playground:
+- [ ] Tested manually via GraphQL Playground:
   - `create → get → update → delete → get again`
-- [x] Ensure correct response shape and error messages
+- [ ] Ensure correct response shape and error messages
 
 ### 6. Prisma Migration & Seed (Completed: 30 May 2025)
 
-- [x] Migration files committed
-- [x] Created `prisma/seed.ts` with 3 sample items
+- [ ] Migration files committed
+- [ ] Created `prisma/seed.ts` with 3 sample items
 
 ### 7. Documentation (Completed: 31 May 2025)
 
-- [x] `README.md` inside `/modules/item/` with:
+- [ ] `README.md` inside `/modules/item/` with:
   - Module overview
   - Folder structure
   - Manual testing instructions
-- [x] Added item user stories to `kanban.md`
+- [ ] Added item user stories to `kanban.md`
 
 ### 8. Git Hygiene & Merge Readiness (Completed: 31 May 2025)
 
-- [x] Commits follow conventional format: `feat(item): ...`
-- [x] PR merged to `main` or `dev`
-- [x] Final version ready for deployment pipeline
+- [ ] Commits follow conventional format: `feat(item): ...`
+- [ ] PR merged to `main` or `dev`
+- [ ] Final version ready for deployment pipeline
 
 ---
 

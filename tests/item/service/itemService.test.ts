@@ -60,6 +60,22 @@ describe('ItemService', () => {
     expect(result).toBe(mockItem);
   });
 
+  it('createItem should throw error if name is missing or a whitespace', async () => {
+    (client.item.create as any).mockResolvedValue(mockItem);
+    const input = { ...mockItem, name: '' };
+    await expect(ItemService.createItem(input)).rejects.toThrow(
+      'Item name is required',
+    );
+  });
+
+  it('updateItem should throw error if name is missing or a whitespace', async () => {
+    (client.item.update as any).mockResolvedValue(mockItem);
+    const input = { ...mockItem, name: '   ' };
+    await expect(ItemService.updateItem(1, input)).rejects.toThrow(
+      'Item name is required',
+    );
+  });
+
   it('updateItem should call update and return updated item', async () => {
     (client.item.update as any).mockResolvedValue(mockItem);
     const input = { name: 'Updated' };

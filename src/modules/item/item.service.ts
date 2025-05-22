@@ -19,6 +19,9 @@ export class ItemService {
     description: string | null;
     price: number;
   }) {
+    if (!input.name || input.name.trim() === '') {
+      throw new Error('Item name is required');
+    }
     return client.item.create({
       data: input,
     });
@@ -34,6 +37,10 @@ export class ItemService {
       price: number;
     }>,
   ) {
+    if (!input.name || input.name.trim() === '') {
+      throw new Error('Item name is required');
+    }
+    
     return client.item.update({
       where: { id },
       data: input,

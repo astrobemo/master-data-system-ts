@@ -14,11 +14,10 @@ datasource db {
 }
 
 enum Unit {
-  PIECE
+  PCS
+  KG
   YARD
-  KILOGRAM
   LITER
-  METER
   BOX
 }
 

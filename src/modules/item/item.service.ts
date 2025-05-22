@@ -1,5 +1,6 @@
 import { client } from '../../database/prismaClient.js';
 import { Unit } from '@prisma/client';
+import { itemInputSchema } from './item.zod.js';
 
 export class ItemService {
   static async getItemById(id: number) {
@@ -19,9 +20,11 @@ export class ItemService {
     description: string | null;
     price: number;
   }) {
-    if (!input.name || input.name.trim() === '') {
-      throw new Error('Item name is required');
+    const parsedInput = itemInputSchema.safeParse(input);
+    if (!parsedInput.success) {
+      throw new Error(parsedInput.error.errors[0].message);
     }
+    
     return client.item.create({
       data: input,
     });
@@ -37,8 +40,10 @@ export class ItemService {
       price: number;
     }>,
   ) {
-    if (!input.name || input.name.trim() === '') {
-      throw new Error('Item name is required');
+
+    const parsedInput = itemInputSchema.partial().safeParse(input);
+    if (!parsedInput.success) {
+      throw new Error(parsedInput.error.errors[0].message);
     }
     
     return client.item.update({

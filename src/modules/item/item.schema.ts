@@ -7,7 +7,7 @@ export const itemTypeDefs = gql`
 
   type Item {
     id: ID!
-    sku_code: String!
+    skuCode: String!
     name: String!
     unit: Unit!
     description: String
@@ -20,7 +20,7 @@ export const itemTypeDefs = gql`
 
   type Mutation {
     createItem(
-      sku_code: String!
+      skuCode: String!
       name: String!
       unit: Unit!
       description: String
@@ -29,7 +29,7 @@ export const itemTypeDefs = gql`
 
     updateItem(
       id: ID!
-      sku_code: String
+      skuCode: String
       name: String
       unit: Unit!
       description: String

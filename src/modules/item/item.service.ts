@@ -14,7 +14,7 @@ export class ItemService {
   }
 
   static async createItem(input: {
-    sku_code: string;
+    skuCode: string;
     name: string;
     unit: Unit;
     description: string | null;
@@ -33,7 +33,7 @@ export class ItemService {
   static async updateItem(
     id: number,
     input: Partial<{
-      sku_code: string;
+      skuCode: string;
       name: string;
       unit: Unit;
       description: string | null;

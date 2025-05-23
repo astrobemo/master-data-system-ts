@@ -25,7 +25,7 @@
 
 ### 3. Error Handling & Validation (Completed: 29 May 2025)
 
-- [ ] Input validation using **Zod**
+- [x] Input validation using **Zod**
 - [x] Use `try/catch` blocks in all mutations
 - [ ] Implement custom error messages for `duplicate`, `not found`, etc.
 

@@ -31,9 +31,9 @@ const createItem: ResolverFn<
   {},
   Item
 > = async (_, { input }, {}) => {
-  const { sku_code, name, unit, description = null, price } = input;
+  const { skuCode, name, unit, description = null, price } = input;
   return ItemService.createItem({
-    sku_code,
+    skuCode,
     name,
     unit: unit as Unit, // Cast to Prisma enum
     description,
@@ -52,9 +52,9 @@ const updateItem: ResolverFn<
   {},
   Item
 > = async (_, { id, input }, {}) => {
-  const { sku_code, name, unit, description = null, price } = input;
+  const { skuCode, name, unit, description = null, price } = input;
   return ItemService.updateItem(id, {
-    sku_code,
+    skuCode,
     name,
     unit: unit as Unit, // Cast to Prisma enum
     description,

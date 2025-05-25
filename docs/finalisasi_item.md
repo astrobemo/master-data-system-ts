@@ -69,8 +69,8 @@
 | 19–22 May       | Start module item: create table, schema, resolver | ✅ Done |
 | 23–25 May       | Add service layer, connect resolver               | ✅ Done |
 | 26–27 May       | Write unit tests                                  | ✅ Done |
-| 28–30 May       | Finalize error handling, test coverage, seed      | ✅ Done |
-| 31 May – 1 June | Write documentation, clean commits                | ✅ Done |
+| 28–30 May       | Finalize error handling, test coverage, seed      |  |
+| 31 May – 1 June | Write documentation, clean commits                |  |
 
 ---
 

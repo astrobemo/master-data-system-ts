@@ -1,3 +1,6 @@
+// Resolvers for SubItem GraphQL operations, connecting GraphQL queries and mutations to SubItemService methods.
+// Structure and logic are similar to the Item module, but specific to subitems.
+
 import Decimal from '../../graphql/decimal.js';
 import DateScalar from '../../graphql/date.js';
 import handleResolverError from '../../graphql/handleResolverError.js';
@@ -6,6 +9,11 @@ import { SubItemService } from './subitem.service.js';
 import { SubItem } from './subitem.model.js';
 import { Unit } from '@prisma/client';
 
+/**
+ * Resolver for fetching subitems by their parent item ID.
+ * @param itemId - The unique identifier of the parent item.
+ * @returns An array of subitem objects.
+ */
 const getSubItemByItemId: ResolverFn<
   null,
   { itemId: number },
@@ -15,6 +23,11 @@ const getSubItemByItemId: ResolverFn<
   return SubItemService.getSubItemByItemId(itemId);
 };
 
+/**
+ * Resolver for creating a new subitem.
+ * @param input - The subitem data to create (excluding id, timestamps, and status flags).
+ * @returns The created subitem object.
+ */
 const createSubItem: ResolverFn<
   null,
   {
@@ -36,6 +49,13 @@ const createSubItem: ResolverFn<
     price,
   });
 };
+
+/**
+ * Resolver for updating an existing subitem.
+ * @param id - The unique identifier of the subitem to update.
+ * @param input - Partial subitem data to update.
+ * @returns The updated subitem object.
+ */
 const updateSubItem: ResolverFn<
   null,
   {
@@ -58,6 +78,11 @@ const updateSubItem: ResolverFn<
   });
 };
 
+/**
+ * Resolver for soft deleting a subitem by ID.
+ * @param id - The unique identifier of the subitem to delete.
+ * @returns The updated subitem object with deletion flags set.
+ */
 const deleteSubItem: ResolverFn<null, { id: number }, {}, SubItem> = async (
   _,
   { id },

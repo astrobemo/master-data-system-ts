@@ -7,7 +7,7 @@ export const subitemTypeDefs = gql`
   type SubItem {
     id: ID!
     itemId: ID!
-    sku_code: String!
+    skuCode: String!
     name: String!
     unit: Unit!
     description: String
@@ -21,7 +21,7 @@ export const subitemTypeDefs = gql`
   type Mutation {
     createSubItem(
       itemId: ID!
-      sku_code: String!
+      skuCode: String!
       name: String!
       unit: Unit!
       description: String
@@ -31,7 +31,7 @@ export const subitemTypeDefs = gql`
     updateSubItem(
       id: ID!
       itemId: ID
-      sku_code: String
+      skuCode: String
       name: String
       unit: Unit!
       description: String

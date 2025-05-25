@@ -1,7 +1,7 @@
 export interface SubItem {
   id: number;
   itemId: number;
-  sku_code: string;
+  skuCode: string;
   name: string;
   unit: string;
   description: string | null;

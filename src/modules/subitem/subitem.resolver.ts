@@ -39,10 +39,10 @@ const createSubItem: ResolverFn<
   {},
   SubItem
 > = async (_, { input }, {}) => {
-  const { itemId, sku_code, name, unit, description = null, price } = input;
+  const { itemId, skuCode, name, unit, description = null, price } = input;
   return SubItemService.createSubItem({
     itemId,
-    sku_code,
+    skuCode,
     name,
     unit: unit as Unit, // Cast to Prisma enum
     description,
@@ -67,10 +67,10 @@ const updateSubItem: ResolverFn<
   {},
   SubItem
 > = async (_, { id, input }, {}) => {
-  const { itemId, sku_code, name, unit, description = null, price } = input;
+  const { itemId, skuCode, name, unit, description = null, price } = input;
   return SubItemService.updateSubItem(id, {
     itemId,
-    sku_code,
+    skuCode,
     name,
     unit: unit as Unit, // Cast to Prisma enum
     description,

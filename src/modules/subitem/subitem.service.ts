@@ -25,7 +25,7 @@ export class SubItemService {
    */
   static async createSubItem(input: {
     itemId: number;
-    sku_code: string;
+    skuCode: string;
     name: string;
     unit: Unit;
     description: string | null;
@@ -51,7 +51,7 @@ export class SubItemService {
     id: number,
     input: Partial<{
       itemId: number;
-      sku_code: string;
+      skuCode: string;
       name: string;
       unit: Unit;
       description: string | null;

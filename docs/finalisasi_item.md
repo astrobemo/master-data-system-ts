@@ -32,8 +32,8 @@
 ### 4. GraphQL Schema & Docs (Completed: 30 May 2025)
 
 - [x] Schema fields and args follow naming and nullability rules
-- [ ] Added comments for better readability
-- [ ] Return types are clear and consistent
+- [x] Added comments for better readability
+- [x] Return types are clear and consistent
 
 ### 5. Manual Testing (Completed: 30 May 2025)
 

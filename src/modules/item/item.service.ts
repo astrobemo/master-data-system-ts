@@ -1,6 +1,7 @@
 import { client } from '../../database/prismaClient.js';
 import { Unit } from '@prisma/client';
 import { itemInputSchema } from './item.zod.js';
+import { Item } from './item.model.js';
 
 // Service for managing Item entities, including CRUD operations and soft deletion.
 export class ItemService {
@@ -9,7 +10,7 @@ export class ItemService {
    * @param id - The unique identifier of the item.
    * @returns The item object or null if not found.
    */
-  static async getItemById(id: number) {
+  static async getItemById(id: number): Promise<Item | null> {
     return client.item.findUnique({
       where: { id },
     });
@@ -19,7 +20,7 @@ export class ItemService {
    * Retrieve all items from the database.
    * @returns An array of all item objects.
    */
-  static async getAllItems() {
+  static async getAllItems(): Promise<Item[]> {
     return client.item.findMany();
   }
 
@@ -35,7 +36,7 @@ export class ItemService {
     unit: Unit;
     description: string | null;
     price: number;
-  }) {
+  }): Promise<Item> {
     const parsedInput = itemInputSchema.safeParse(input);
     if (!parsedInput.success) {
       throw new Error(parsedInput.error.errors[0].message);
@@ -62,7 +63,7 @@ export class ItemService {
       description: string | null;
       price: number;
     }>,
-  ) {
+  ): Promise<Item> {
 
     const parsedInput = itemInputSchema.partial().safeParse(input);
     if (!parsedInput.success) {
@@ -86,7 +87,7 @@ export class ItemService {
     id: number,
     isDeleted: boolean = true,
     isActive: boolean = false,
-  ) {
+  ): Promise<Item> {
     return client.item.update({
       where: { id },
       data: {

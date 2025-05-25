@@ -4,6 +4,7 @@
 import { client } from '../../database/prismaClient.js';
 import { Unit } from '@prisma/client';
 import { subitemInputSchema } from './subitem.zod.js';
+import { SubItem } from './subitem.model.js';
 
 export class SubItemService {
   /**
@@ -11,7 +12,7 @@ export class SubItemService {
    * @param itemId - The unique identifier of the parent item.
    * @returns An array of subitem objects.
    */
-  static async getSubItemByItemId(itemId: number) {
+  static async getSubItemByItemId(itemId: number): Promise<SubItem[]> {
     return client.subitem.findMany({
       where: { itemId },
     });
@@ -30,7 +31,7 @@ export class SubItemService {
     unit: Unit;
     description: string | null;
     price: number;
-  }) {
+  }): Promise<SubItem> {
     const parsedInput = subitemInputSchema.safeParse(input);
     if (!parsedInput.success) {
       throw new Error(parsedInput.error.errors[0].message);
@@ -57,7 +58,7 @@ export class SubItemService {
       description: string | null;
       price: number;
     }>,
-  ) {
+  ): Promise<SubItem> {
     const parsedInput = subitemInputSchema.partial().safeParse(input);
     if (!parsedInput.success) {
       throw new Error(parsedInput.error.errors[0].message);
@@ -79,7 +80,7 @@ export class SubItemService {
     id: number,
     isDeleted: boolean = true,
     isActive: boolean = false,
-  ) {
+  ): Promise<SubItem> {
     return client.subitem.update({
       where: { id },
       data: {

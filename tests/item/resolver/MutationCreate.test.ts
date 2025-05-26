@@ -6,7 +6,7 @@ import { GraphQLResolveInfo } from 'graphql';
 vi.mock('../../../src/modules/item/item.service');
 
 const mockItem = {
-  sku_code: 'SKU001',
+  skuCode: 'SKU001',
   name: 'Test Item',
   unit: 'piece',
   description: 'A test item',

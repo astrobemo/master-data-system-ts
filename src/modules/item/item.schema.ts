@@ -6,7 +6,7 @@ export const itemTypeDefs = gql`
   scalar Date
 
   type Item {
-    id: ID!
+    id: Int!
     skuCode: String!
     name: String!
     unit: Unit!
@@ -18,28 +18,30 @@ export const itemTypeDefs = gql`
     updatedAt: Date
   }
 
+  input CreateItemInput {
+    skuCode: String!
+    name: String!
+    unit: Unit!
+    description: String
+    price: Decimal!
+  }
+
+  input UpdateItemInput {
+    id: Int!
+    skuCode: String
+    name: String
+    unit: Unit!
+    description: String
+    price: Decimal
+  }
+
   type Mutation {
-    createItem(
-      skuCode: String!
-      name: String!
-      unit: Unit!
-      description: String
-      price: Decimal!
-    ): Item!
-
-    updateItem(
-      id: ID!
-      skuCode: String
-      name: String
-      unit: Unit!
-      description: String
-      price: Decimal
-    ): Item!
-
-    deleteItem(id: ID!): Item!
+    createItem(input:CreateItemInput): Item!
+    updateItem(input:UpdateItemInput): Item!
+    deleteItem(id: Int!): Item!
   }
   type Query {
-    getItem(id: ID!): Item
+    getItem(id: Int!): Item
     getItems(offset: Int, limit: Int): [Item!]!
   }
 `;

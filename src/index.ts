@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Initialize Apollo Server
 const server = new ApolloServer<BaseContext>({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 await server.start();

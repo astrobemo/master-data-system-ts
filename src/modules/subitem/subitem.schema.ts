@@ -5,7 +5,7 @@ export const subitemTypeDefs = gql`
   scalar Date
 
   type SubItem {
-    id: ID!
+    id: Int!
     itemId: ID!
     skuCode: String!
     name: String!
@@ -29,7 +29,7 @@ export const subitemTypeDefs = gql`
     ): SubItem!
 
     updateSubItem(
-      id: ID!
+      id: Int!
       itemId: ID
       skuCode: String
       name: String
@@ -38,7 +38,7 @@ export const subitemTypeDefs = gql`
       price: Decimal
     ): SubItem!
 
-    deleteSubItem(id: ID!): SubItem!
+    deleteSubItem(id: Int!): SubItem!
   }
 
   #   ===========query===========

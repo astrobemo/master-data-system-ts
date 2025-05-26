@@ -2,7 +2,7 @@ import { gql } from 'graphql-tag';
 
 export const unitEnumTypeDefs = gql`
   enum Unit {
-    PIECE
+    PCS
     YARD
     KILOGRAM
     LITER

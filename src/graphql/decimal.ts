@@ -17,10 +17,10 @@ const Decimal = new GraphQLScalarType({
     throw new Error('Decimal must be a string or number');
   },
   parseLiteral(ast) {
-    if (ast.kind === Kind.FLOAT || ast.kind === Kind.STRING) {
+    if (ast.kind === Kind.FLOAT || ast.kind === Kind.INT || ast.kind === Kind.STRING) {
       return parseFloat(ast.value); // Convert AST literal to Decimal
     }
-    throw new Error('Decimal must be a float or string literal');
+    throw new Error('Decimal must be a float, int, or string literal');
   },
 });
 

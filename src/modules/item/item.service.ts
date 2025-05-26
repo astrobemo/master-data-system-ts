@@ -2,6 +2,8 @@ import { client } from '../../database/prismaClient.js';
 import { Unit } from '@prisma/client';
 import { itemInputSchema } from './item.zod.js';
 import { Item } from './item.model.js';
+import { Prisma } from '@prisma/client';
+import { UserInputError } from '../../graphql/customError.js';
 
 // Service for managing Item entities, including CRUD operations and soft deletion.
 export class ItemService {
@@ -41,10 +43,20 @@ export class ItemService {
     if (!parsedInput.success) {
       throw new Error(parsedInput.error.errors[0].message);
     }
+
+    try {
+      return client.item.create({
+        data: input,
+      });
+    } catch (error) {
+      if( error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2002') {
+          throw new UserInputError('SKU code must be unique');
+        }
+      }
+      throw error; // Re-throw other errors
+    }
     
-    return client.item.create({
-      data: input,
-    });
   }
 
   /**
@@ -70,10 +82,20 @@ export class ItemService {
       throw new Error(parsedInput.error.errors[0].message);
     }
     
-    return client.item.update({
-      where: { id },
-      data: input,
-    });
+    try {
+     return client.item.update({
+        where: { id },
+        data: input,
+      }); 
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2002') {
+          throw new UserInputError('SKU code duplicated');
+        }
+      }
+      throw error; // Re-throw other errors
+      
+    }
   }
 
   /**

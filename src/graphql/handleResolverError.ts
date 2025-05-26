@@ -5,6 +5,7 @@
 // For example, you can check process.env.NODE_ENV and return error.message or a custom error type.
 
 import { ResolverFn } from './types.js';
+import { UserInputError } from './customError.js';
 
 /**
  * Wraps a resolver function to provide centralized error handling.
@@ -30,9 +31,13 @@ const handleResolverError =
       return await resolver(parent, args, context, info);
     } catch (error) {
       // Log the error
-      console.error('Error in resolver:', error);
+      if(error instanceof UserInputError) {
+        // If you want to return a specific error type for user input errors
+        throw new Error(error.message);
+      }
       // To return a custom error, modify the line below as needed:
       // For development, you might use: throw new Error(error.message);
+      console.error('Error in resolver:', error);
       throw new Error(
         'An error occurred while processing your request. Please try again later.',
       );

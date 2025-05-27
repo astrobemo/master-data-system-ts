@@ -23,6 +23,11 @@ const getSubItemByItemId: ResolverFn<
   return SubItemService.getSubItemByItemId(itemId);
 };
 
+const getSubItems: ResolverFn<null, {}, {}, SubItem[]
+> = async (_, __, {}) => {
+  return SubItemService.getAllSubItems();
+};
+
 /**
  * Resolver for creating a new subitem.
  * @param input - The subitem data to create (excluding id, timestamps, and status flags).
@@ -96,6 +101,7 @@ export const subitemResolvers = {
   Date: DateScalar,
   Query: {
     getSubItemByItemId: handleResolverError(getSubItemByItemId),
+    getSubItems: handleResolverError(getSubItems),
   },
   Mutation: {
     createSubItem: handleResolverError(createSubItem),

@@ -13,8 +13,11 @@ export class ItemService {
    * @returns The item object or null if not found.
    */
   static async getItemById(id: number): Promise<Item | null> {
-    return await client.item.findUnique({
-      where: { id },
+    return await client.item.findFirst({
+      where: { 
+        id:id,
+        isDeleted: false
+      },
     });
   }
 
@@ -23,7 +26,11 @@ export class ItemService {
    * @returns An array of all item objects.
    */
   static async getAllItems(): Promise<Item[]> {
-    return await client.item.findMany();
+    return await client.item.findMany({
+      where: {
+        isDeleted: false
+      }
+    });
   }
 
   /**

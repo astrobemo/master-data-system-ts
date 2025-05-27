@@ -2,9 +2,11 @@
 // Structure and logic are similar to the ItemService, but specific to subitems.
 
 import { client } from '../../database/prismaClient.js';
-import { Unit } from '@prisma/client';
+import { Prisma, Unit } from '@prisma/client';
 import { subitemInputSchema } from './subitem.zod.js';
 import { SubItem } from './subitem.model.js';
+import { UserInputError } from '../../graphql/customError.js';
+import { error } from 'console';
 
 export class SubItemService {
   /**
@@ -13,8 +15,19 @@ export class SubItemService {
    * @returns An array of subitem objects.
    */
   static async getSubItemByItemId(itemId: number): Promise<SubItem[]> {
-    return client.subitem.findMany({
-      where: { itemId },
+    return await client.subitem.findMany({
+      where: { 
+        itemId: itemId,
+        isDeleted: false,
+       },
+    });
+  }
+
+  static async getAllSubItems(): Promise<SubItem[]> {
+    return await client.subitem.findMany({  
+      where: {
+        isDeleted: false,
+      },
     });
   }
 
@@ -36,9 +49,20 @@ export class SubItemService {
     if (!parsedInput.success) {
       throw new Error(parsedInput.error.errors[0].message);
     }
-    return client.subitem.create({
-      data: input,
-    });
+
+    try {
+      return await client.subitem.create({
+        data: input,
+      });
+    } catch (error) {
+      if(error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2002') {
+          throw new UserInputError('Subitem with this SKU code already exists.');
+        }
+      }
+      throw error; // Re-throw other Prisma errors
+    }
+
   }
 
   /**
@@ -63,10 +87,22 @@ export class SubItemService {
     if (!parsedInput.success) {
       throw new Error(parsedInput.error.errors[0].message);
     }
-    return client.subitem.update({
-      where: { id },
-      data: input,
-    });
+
+    try {
+      return await client.subitem.update({
+        where: { id },
+        data: input,
+      });
+    } catch (error) {
+      if( error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2002') {
+          throw new UserInputError('Subitem with this SKU code already exists.');
+        }
+      }
+      throw error; // Re-throw other Prisma errors
+      
+    }
+
   }
 
   /**
@@ -81,7 +117,7 @@ export class SubItemService {
     isDeleted: boolean = true,
     isActive: boolean = false,
   ): Promise<SubItem> {
-    return client.subitem.update({
+    return await client.subitem.update({
       where: { id },
       data: {
         isDeleted,

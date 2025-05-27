@@ -18,32 +18,33 @@ export const subitemTypeDefs = gql`
     updatedAt: Date
   }
 
+  input CreateSubItemInput {
+    itemId: Int!
+    skuCode: String!
+    name: String!
+    unit: Unit!
+    description: String
+    price: Decimal!
+  }
+
+  input UpdateSubItemInput {
+    itemId: Int!
+    skuCode: String
+    name: String
+    unit: Unit!
+    description: String
+    price: Decimal
+  }
+
   type Mutation {
-    createSubItem(
-      itemId: ID!
-      skuCode: String!
-      name: String!
-      unit: Unit!
-      description: String
-      price: Decimal!
-    ): SubItem!
-
-    updateSubItem(
-      id: Int!
-      itemId: ID
-      skuCode: String
-      name: String
-      unit: Unit!
-      description: String
-      price: Decimal
-    ): SubItem!
-
+    createSubItem(input:CreateSubItemInput): SubItem!
+    updateSubItem(id:Int!,input:UpdateSubItemInput): SubItem!
     deleteSubItem(id: Int!): SubItem!
   }
 
   #   ===========query===========
   type Query {
     getSubItems(offset: Int, limit: Int): [SubItem]
-    getSubItemByItemId(itemId: ID!): [SubItem]
+    getSubItemByItemId(itemId: Int!): [SubItem]
   }
 `;

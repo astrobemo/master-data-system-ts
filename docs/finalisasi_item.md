@@ -37,9 +37,9 @@
 
 ### 5. Manual Testing (Completed: 30 May 2025)
 
-- [ ] Tested manually via GraphQL Playground:
+- [x] Tested manually via GraphQL Playground:
   - `create → get → update → delete → get again`
-- [ ] Ensure correct response shape and error messages
+- [x] Ensure correct response shape and error messages
 
 ### 6. Prisma Migration & Seed (Completed: 30 May 2025)
 

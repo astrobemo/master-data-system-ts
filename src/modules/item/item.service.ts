@@ -13,7 +13,7 @@ export class ItemService {
    * @returns The item object or null if not found.
    */
   static async getItemById(id: number): Promise<Item | null> {
-    return client.item.findUnique({
+    return await client.item.findUnique({
       where: { id },
     });
   }
@@ -23,7 +23,7 @@ export class ItemService {
    * @returns An array of all item objects.
    */
   static async getAllItems(): Promise<Item[]> {
-    return client.item.findMany();
+    return await client.item.findMany();
   }
 
   /**
@@ -45,7 +45,7 @@ export class ItemService {
     }
 
     try {
-      return client.item.create({
+      return await client.item.create({
         data: input,
       });
     } catch (error) {
@@ -83,7 +83,7 @@ export class ItemService {
     }
     
     try {
-     return client.item.update({
+     return await client.item.update({
         where: { id },
         data: input,
       }); 
@@ -110,7 +110,7 @@ export class ItemService {
     isDeleted: boolean = true,
     isActive: boolean = false,
   ): Promise<Item> {
-    return client.item.update({
+    return await client.item.update({
       where: { id },
       data: {
         isDeleted,

@@ -30,9 +30,9 @@ const handleResolverError =
     try {
       return await resolver(parent, args, context, info);
     } catch (error) {
-      // Log the error
       if(error instanceof UserInputError) {
         // If you want to return a specific error type for user input errors
+        console.error('User input error:', error.message);
         throw new Error(error.message);
       }
       // To return a custom error, modify the line below as needed:

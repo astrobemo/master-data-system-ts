@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "nodemon --watch src --ext ts,js,json --exec ts-node --loader ts-node/esm src/index.ts",
     "start": "node --loader ts-node/esm src/index.ts",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
@@ -27,6 +27,7 @@
     "eslint": "^9.26.0",
     "eslint-config-prettier": "^10.1.5",
     "globals": "^16.1.0",
+    "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
     "prisma": "^6.7.0",
     "supertest": "^7.1.0",

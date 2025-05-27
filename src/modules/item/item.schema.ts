@@ -27,7 +27,6 @@ export const itemTypeDefs = gql`
   }
 
   input UpdateItemInput {
-    id: Int!
     skuCode: String
     name: String
     unit: Unit!
@@ -37,7 +36,7 @@ export const itemTypeDefs = gql`
 
   type Mutation {
     createItem(input:CreateItemInput): Item!
-    updateItem(input:UpdateItemInput): Item!
+    updateItem(id:Int!, input:UpdateItemInput): Item!
     deleteItem(id: Int!): Item!
   }
   type Query {

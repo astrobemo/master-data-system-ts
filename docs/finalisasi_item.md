@@ -43,8 +43,8 @@
 
 ### 6. Prisma Migration & Seed (Completed: 30 May 2025)
 
-- [ ] Migration files committed
-- [ ] Created `prisma/seed.ts` with 3 sample items
+- [x] Migration files committed
+- [x] Created `prisma/seed.ts` with 3 sample items
 
 ### 7. Documentation (Completed: 31 May 2025)
 

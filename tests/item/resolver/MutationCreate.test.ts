@@ -21,6 +21,7 @@ describe('itemResolvers.Mutation.createItem', () => {
   });
 
   it('should create an item and return it', async () => {
+    
     (ItemService.createItem as any).mockResolvedValue(mockItem);
     const result = await itemResolvers.Mutation.createItem(
       null,

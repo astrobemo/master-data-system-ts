@@ -48,7 +48,7 @@
 
 ### 7. Documentation (Completed: 31 May 2025)
 
-- [ ] `README.md` inside `/modules/item/` with:
+- [x] `README.md` inside `/modules/item/` with:
   - Module overview
   - Folder structure
   - Manual testing instructions

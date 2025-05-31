@@ -15,12 +15,22 @@ export class SubItemService {
    * @returns An array of subitem objects.
    */
   static async getSubItemByItemId(itemId: number): Promise<SubItem[]> {
-    return await client.subitem.findMany({
-      where: { 
-        itemId: itemId,
-        isDeleted: false,
-       },
-    });
+    try {
+      return await client.subitem.findMany({
+        where: { 
+          itemId: itemId,
+          isDeleted: false,
+        },
+      });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new UserInputError('Item not found');
+        }
+      }
+      throw error; // Re-throw other errors
+      
+    }
   }
 
   static async getAllSubItems(): Promise<SubItem[]> {
@@ -117,12 +127,22 @@ export class SubItemService {
     isDeleted: boolean = true,
     isActive: boolean = false,
   ): Promise<SubItem> {
-    return await client.subitem.update({
+    try {
+      return await client.subitem.update({
       where: { id },
       data: {
         isDeleted,
         isActive,
       },
     });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new UserInputError('Subitem not found');
+        }
+      }
+      throw error; // Re-throw other errors 
+    }
+    
   }
 }

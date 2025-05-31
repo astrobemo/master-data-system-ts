@@ -13,12 +13,21 @@ export class ItemService {
    * @returns The item object or null if not found.
    */
   static async getItemById(id: number): Promise<Item | null> {
-    return await client.item.findFirst({
-      where: { 
-        id:id,
-        isDeleted: false
-      },
-    });
+    try {
+      return await client.item.findFirst({
+        where: { 
+          id:id,
+          isDeleted: false
+        },
+      });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new UserInputError('Item not found');
+        }
+      }
+      throw error; // Re-throw other errors
+    }
   }
 
   /**
@@ -117,12 +126,22 @@ export class ItemService {
     isDeleted: boolean = true,
     isActive: boolean = false,
   ): Promise<Item> {
-    return await client.item.update({
-      where: { id },
-      data: {
-        isDeleted,
-        isActive,
-      },
-    });
+    try {
+      return await client.item.update({
+        where: { id },
+        data: {
+          isDeleted,
+          isActive,
+        },
+      });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new UserInputError('Item not found');
+        }
+      }
+      throw error; // Re-throw other errors
+      
+    }
   }
 }

@@ -27,7 +27,7 @@
 
 - [x] Input validation using **Zod**
 - [x] Use `try/catch` blocks in all mutations
-- [ ] Implement custom error messages for `duplicate`, `not found`, etc.
+- [x] Implement custom error messages for `duplicate`, `not found`, etc.
 
 ### 4. GraphQL Schema & Docs (Completed: 30 May 2025)
 
